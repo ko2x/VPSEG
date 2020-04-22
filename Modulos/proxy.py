@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # encoding: utf-8
-# SSHPLUS By @Crazy_vpn
 import socket, threading, thread, select, signal, sys, time
 from os import system
 system("clear")
@@ -13,8 +12,8 @@ except:
 PASS = ''
 BUFLEN = 8196 * 8
 TIMEOUT = 60
-MSG = 'VPSEG'
-COR = '<font color="red">'
+MSG = 'SSHPLUS'
+COR = '<font color="null">'
 FTAG = '</font>'
 DEFAULT_HOST = '0.0.0.0:22'
 RESPONSE = "HTTP/1.1 200 " + str(COR) + str(MSG) + str(FTAG) + "\r\nContent-length: 0\r\n\r\n \r\n\r\n"
