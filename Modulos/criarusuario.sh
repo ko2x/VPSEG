@@ -378,12 +378,19 @@ else
                                 fi
                               else
                                 clear
-                                echo -e "\E[44;1;37m       CONTA SSH CRIADA !      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsuário: \033[1;37m$username" ; echo -e "\033[1;32mSenha: \033[1;37m$password" ; echo -e "\033[1;32mExpira em: \033[1;37m$gui" ; echo -e "\033[1;32mLimite de conexões: \033[1;37m$sshlimiter" ; echo "" || echo "Não foi possível criar o usuário!" ; tput sgr0
+                                echo -e "\E[44;1;37m       SSH ACCOUNT CREATED !      \E[0m"
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "";echo"▬▬▬▬▬▬▬▬▬▬▬▬▬▬" echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
+Support:                  
+
+◽ Online Games            
+◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ                                                              
+◽ Whatsapp Video call          
+                                                                                                                     ᵇʸ @team_eg ☆ @Free_Net11
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "Could not create user!" ; tput sgr0
                               fi
                           else
                             clear
-                            echo -e "\E[44;1;37m       CONTA SSH CRIADA !      \E[0m"
+                            echo -e "\E[44;1;37m       SSH ACCOUNT CREATED !      \E[0m"
                             [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUsuário: \033[1;37m$username" ; echo -e "\033[1;32mSenha: \033[1;37m$password" ; echo -e "\033[1;32mExpira em: \033[1;37m$gui" ; echo -e "\033[1;32mLimite de conexões: \033[1;37m$sshlimiter" ; echo "" || echo "Não foi possível criar o usuário!" ; tput sgr0
                           fi
                         fi
