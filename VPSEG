@@ -119,6 +119,8 @@ apt-get install python-pip -y > /dev/null 2>&1
 pip install speedtest-cli > /dev/null 2>&1
 apt-get install ruby > /dev/null 2>&1
 apt-get install lolcat > /dev/null 2>&1
+apt-get install figlet 
+apt-get install figlet > /dev/null 2>&1
 }
 fun_bar 'inst_pct'
 [[ -f "/usr/sbin/ufw" ]] && ufw allow 443/tcp ; ufw allow 80/tcp ; ufw allow 3128/tcp ; ufw allow 8799/tcp ; ufw allow 8080/tcp
