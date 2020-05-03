@@ -1,4 +1,6 @@
 #!/bin/bash
+apt-get install ruby
+apt-get install lolcat
 clear
 [[ $EUID -ne 0 ]] && {
 echo -e "\033[1;33mexcuse me!, \033[1;33myou need to run as root!!\033[0m"
