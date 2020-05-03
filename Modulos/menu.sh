@@ -23,7 +23,7 @@ while true; do
    tput dl1
    echo -ne "\033[1;33m["
 done
-echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
+echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m" | lolcat -a
 tput cnorm
 }
 IP=$(cat /etc/IP)
@@ -42,7 +42,7 @@ ${comando[1]} > /dev/null 2>&1
 touch $HOME/fim
  ) > /dev/null 2>&1 &
  tput civis
-echo -ne "  \033[1;33mWAIT... \033[1;37m- \033[1;33m["
+echo -ne "  \033[1;33mWAIT... \033[1;37m- \033[1;33m[" | lolcat -a
 while true; do
    for((i=0; i<18; i++)); do
    echo -ne "\033[1;31m#"
@@ -53,7 +53,7 @@ while true; do
    sleep 1s
    tput cuu1
    tput dl1
-   echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m["
+   echo -ne "  \033[1;33mWAIT \033[1;37m- \033[1;33m[" | lolcat -a
 done
 echo -e "\033[1;33m]\033[1;37m -\033[1;32m OK !\033[1;37m"
 tput cnorm
@@ -62,7 +62,7 @@ fun_tst () {
 speedtest --share > speed
 }
 echo ""
-echo -e "   \033[1;32mTESTING SERVER SPEED !\033[0m"
+echo -e "   \033[1;32mTESTING SERVER SPEED !\033[0m" | lolcat -a
 echo ""
 aguarde 'fun_tst'
 echo ""
@@ -70,18 +70,18 @@ png=$(cat speed | sed -n '5 p' |awk -F : {'print $NF'})
 down=$(cat speed | sed -n '7 p' |awk -F :  {'print $NF'})
 upl=$(cat speed | sed -n '9 p' |awk -F :  {'print $NF'})
 lnk=$(cat speed | sed -n '10 p' |awk {'print $NF'})
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\033[1;32mPING :\033[1;37m$png"
-echo -e "\033[1;32mDOWNLOAD:\033[1;37m$down"
-echo -e "\033[1;32mUPLOAD:\033[1;37m$upl"
-echo -e "\033[1;32mLINK: \033[1;36m$lnk\033[0m"
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
+echo -e "\033[1;32mPING :\033[1;37m$png" | lolcat -a
+echo -e "\033[1;32mDOWNLOAD:\033[1;37m$down" | lolcat -a
+echo -e "\033[1;32mUPLOAD:\033[1;37m$upl" | lolcat -a
+echo -e "\033[1;32mLINK: \033[1;36m$lnk\033[0m" | lolcat -a
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
 rm -rf $HOME/speed
 }
 #limiter
 function limit1 () {
    clear
-   echo -e "\n\033[1;32mMININATING THE LIMITER... \033[0m"
+   echo -e "\n\033[1;32mMININATING THE LIMITER... \033[0m" | lolcat -a
    echo ""
    fun_bar 'screen -dmS limiter limiter' 'sleep 3'
    [[ $(grep -wc "limiter" /etc/autostart) = '0' ]] && {
@@ -177,21 +177,21 @@ _onlin=$(printf '%-5s' "$_onli")
 _userexp=$(printf '%-5s' "$_expuser")
 _tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
 clear
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[41;1;37m               ⇱ VPSEG CONTROL ⇲                \E[0m"
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\033[1;32mSYSTEM            MEMORY RAM      PROCESSOR "
-echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mCores: \033[1;37m$_core\033[0m"
-echo -e "\033[1;31mTime: \033[1;37m$_hora     \033[1;31mUSED : \033[1;37m$_usor \033[1;31mUSED : \033[1;37m$_usop\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
+echo -e "\E[41;1;37m               ⇱ VPSEG CONTROL ⇲                \E[0m" | lolcat -a
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
+echo -e "\033[1;32mSYSTEM            MEMORY RAM      PROCESSOR " | lolcat -a
+echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mCores: \033[1;37m$_core\033[0m" | lolcat -a
+echo -e "\033[1;31mTime: \033[1;37m$_hora     \033[1;31mUSED : \033[1;37m$_usor \033[1;31mUSED : \033[1;37m$_usop\033[0m" | lolcat -a
 echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 [[ ! -e /tmp/att ]]  && {
     echo -e "\033[1;32mOnlines:\033[1;37m $_onlin     \033[1;31mExpired: \033[1;37m$_userexp \033[1;33mTotal: \033[1;37m$_tuser\033[0m"
-    var01='\033[1;37m•'
+    var01='\033[1;37m•' | lolcat -a
 } || {
     echo -e "  \033[1;33m[\033[1;31m!\033[1;33m]  \033[1;32mTHERE IS A UPDATE AVAILABLE  \033[1;33m[\033[1;31m!\033[1;33m]\033[0m"
-    var01="\033[1;32m!"
+    var01="\033[1;32m!" | lolcat -a
 }
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
 echo ""
 echo -e "\033[1;31m[\033[1;36m20\033[1;31m] \033[1;37m• \033[1;33mADD HOST \033[1;31m                          [\033[1;36m26\033[1;31m] \033[1;37m• \033[1;33mCHANGE PASSWORD ROOT \033[1;31m
 [\033[1;36m21\033[1;31m] \033[1;37m• \033[1;33mREMOVER HOST \033[1;31m                      [\033[1;36m27\033[1;31m] \033[1;37m• \033[1;33mAUTO EXECUTION $autm \033[1;31m
@@ -200,20 +200,20 @@ echo -e "\033[1;31m[\033[1;36m20\033[1;31m] \033[1;37m• \033[1;33mADD HOST \03
 [\033[1;36m24\033[1;31m] \033[1;37m• \033[1;33mBLOCK TORRENT $stsf\033[1;31m                   [\033[1;36m30\033[1;31m] \033[1;37m• \033[1;33mRETURN \033[1;32m<\033[1;33m<\033[1;31m< \033[1;31m
 [\033[1;36m25\033[1;31m] \033[1;37m• \033[1;33mBOT TELEGRAM $stsbot\033[1;31m                    [\033[1;36m00\033[1;31m] \033[1;37m• \033[1;33mEXIT \033[1;32m<\033[1;33m<\033[1;31m<\033[1;31m"
 echo ""
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
 echo ""
 echo -ne "\033[1;32mPUT YOUR CHOICE \033[1;33m?\033[1;31m?\033[1;37m : "; read x
 case "$x" in
    20)
    clear
    addhost
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    menu2
    ;;
    21)
    clear
    delhost
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN ao \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN ao \033[1;32mMENU!\033[0m" | lolcat -a; read
    menu2
    ;;
    22)
@@ -250,13 +250,13 @@ case "$x" in
    menu
    ;;
    0|00)
-   echo -e "\033[1;31mGET OUT...\033[0m"
+   echo -e "\033[1;31mEXITING...\033[0m" | lolcat -a
    sleep 2
    clear
    exit;
    ;;
    *)
-   echo -e "\n\033[1;31mWRG CHOICE !\033[0m"
+   echo -e "\n\033[1;31mWRONG CHOICE !\033[0m" | lolcat -a
    sleep 2
 esac
 }
@@ -290,9 +290,9 @@ _onlin=$(printf '%-5s' "$_onli")
 _userexp=$(printf '%-5s' "$_expuser")
 _tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
 clear
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-echo -e "\E[41;1;37m               ⇱ VPSEG CONTROL ⇲                \E[0m"
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
+echo -e "\E[41;1;37m               ⇱ VPSEG CONTROL ⇲                \E[0m" | lolcat -a
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
 echo -e "\033[1;3232mSYSTEM            MEMORY RAM      PROCESSOR "
 echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mCores: \033[1;37m$_core\033[0m"
 echo -e "\033[1;31mTime: \033[1;37m$_hora     \033[1;31mUSED : \033[1;37m$_usor \033[1;31mUSED: \033[1;37m$_usop\033[0m"
@@ -309,22 +309,22 @@ echo -e "\033[1;31m[\033[1;36m01\033[1;31m] \033[1;37m• \033[1;33mCREATE USER 
 [\033[1;36m07\033[1;31m] \033[1;37m• \033[1;33mCHANGE PASSWORD \033[1;31m                      [\033[1;36m17\033[1;31m] \033[1;37m• \033[1;33mBAD VPN $stsu\033[1;31m
 [\033[1;36m08\033[1;31m] \033[1;37m• \033[1;33mREMOVE EXPIRED \033[1;31m                       [\033[1;36m18\033[1;31m] \033[1;37m• \033[1;33mINFO VPS \033[1;31m
 [\033[1;36m09\033[1;31m] \033[1;37m• \033[1;33mUSER RECORD \033[1;31m                          [\033[1;36m19\033[1;31m] \033[1;37m• \033[1;33mRETURN \033[1;31m>\033[1;33m>\033[1;32m>\033[0m\033[1;31m
-[\033[1;36m10\033[1;31m] \033[1;37m• \033[1;33mCONNECTION MODE \033[1;31m                      [\033[1;36m00\033[1;31m] \033[1;37m• \033[1;33mEXIT \033[1;32m<\033[1;33m<\033[1;31m<\033[0m \033[0m"
+[\033[1;36m10\033[1;31m] \033[1;37m• \033[1;33mCONNECTION MODE \033[1;31m                      [\033[1;36m00\033[1;31m] \033[1;37m• \033[1;33mEXIT \033[1;32m<\033[1;33m<\033[1;31m<\033[0m \033[0m" | lolcat -a
 echo ""
-echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m" | lolcat -a
 echo ""
-echo -ne "\033[1;32mPUT YOUR CHOICE \033[1;33m?\033[1;31m?\033[1;37m : "; read x
+echo -ne "\033[1;32mPUT YOUR CHOICE \033[1;33m?\033[1;31m?\033[1;37m : " | lolcat -a; read x
 
 case "$x" in 
    1 | 01)
    clear
    criarusuario
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    ;;
    2 | 02)
    clear
    criarteste
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    ;;
    3 | 03)
    clear
@@ -334,7 +334,7 @@ case "$x" in
    4 | 04)
    clear
    sshmonitor
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    ;;      
    5 | 05)
    clear
@@ -360,7 +360,7 @@ case "$x" in
    9 | 09)
    clear
    infousers
-   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m"; read
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    ;;
    10)
    conexao
@@ -378,7 +378,7 @@ case "$x" in
    ;;
    13)
    clear
-   echo -e "\033[1;32mTO QUIT CLICK CTRL + C\033[1;36m"
+   echo -e "\033[1;32mTO QUIT CLICK CTRL + C\033[1;36m" | lolcat -a
    sleep 4
    nload
    ;;
