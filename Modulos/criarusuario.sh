@@ -342,7 +342,14 @@ else
                                 }
                                 clear
                                 echo -e "\E[44;1;37m       SSH ACCOUNT CREATED!      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUser: \033[1;37m$username" ; echo -e "\033[1;32mpassword: \033[1;37m$password" ; echo -e "\033[1;32mexpires: \033[1;37m$gui" ; echo -e "\033[1;32mConnection limit: \033[1;37m$sshlimiter" ; echo "" || echo "The user could not be created!" ; tput sgr0
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUser: \033[1;37m$username" ; echo -e "\033[1;32mpassword: \033[1;37m$password" ; echo -e "\033[1;32mexpires: \033[1;37m$gui" ; echo -e "\033[1;32mConnection limit: \033[1;37m$sshlimiter" ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
+Support:                  
+
+◽ Online Games            
+◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ                                                              
+◽ Whatsapp Video call          
+                                                                                                                     ᵇʸ @team_eg ☆ @Free_Net11
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "The user could not be created!" ; tput sgr0
                                 sleep 1
                                 function aguarde {
                                   helice () {
@@ -391,7 +398,7 @@ Support:
                           else
                             clear
                             echo -e "\E[44;1;37m       SSH ACCOUNT CREATED !      \E[0m"
-                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬"; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ; echo "echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
+                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬"; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
 Support:                  
 
 ◽ Online Games            
