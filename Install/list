@@ -1,4 +1,6 @@
 #!/bin/bash
+wget https://github.com/busyloop/lolcat/archive/master.zip;unzip master.zip;cd lolcat-master/bin;gem install lolcat
+clear
 _lvk=$(wget -qO- sshplus.xyz/script/versao)
 IP=$(wget -qO- ipv4.icanhazip.com/)
 IP2=$(wget -qO- http://whatismyip.akamai.com/)
@@ -17,9 +19,7 @@ netstat -nplt| grep -w 'apache2' |grep -w '80' && sed -i "s/Listen 80/Listen 81/
 [[ "$(grep -o '#Port 22' /etc/ssh/sshd_config)" == "#Port 22" ]] && sed -i "s;#Port 22;Port 22;" /etc/ssh/sshd_config && service ssh restart
 grep -v "^PasswordAuthentication" /etc/ssh/sshd_config > /tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
-service ssh restart
-
-wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/addhost.sh > /dev/null 2>&1
+service ssh restartwget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/addhost.sh > /dev/null 2>&1
 chmod +x /bin/addhost
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/ajuda.sh -O /bin/ajuda > /dev/null 2>&1
 chmod +x /bin/ajuda
