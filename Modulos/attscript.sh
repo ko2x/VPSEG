@@ -136,7 +136,7 @@ vrs2=$(sed -n '1 p' /tmp/att | sed -e 's/[^0-9]//ig')
 
     chmod +x VPSEG
 
-    ./Plus
+    ./VPSEG
 
     clear
 
