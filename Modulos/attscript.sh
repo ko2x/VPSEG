@@ -72,7 +72,7 @@ fun_atts () {
 
 echo -e "                              \033[1;31mBy VPSEG\033[1;36m"
 
-echo -e "   VPSEG" | figlet
+echo -e "   VPSEG" | figlet | lolcat
 
 echo " "
 
