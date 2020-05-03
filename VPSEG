@@ -1,6 +1,6 @@
 #!/bin/bash
-apt-get install ruby
-apt-get install lolcat
+apt-get install ruby -y;apt-get install lolcat -y;wget https://github.com/busyloop/lolcat/archive/master.zip;unzip master.zip;cd lolcat-master/bin;gem install lolcat;cd
+
 clear
 [[ $EUID -ne 0 ]] && {
 echo -e "\033[1;33mexcuse me!, \033[1;33myou need to run as root!!\033[0m"
