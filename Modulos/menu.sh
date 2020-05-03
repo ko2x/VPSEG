@@ -291,7 +291,7 @@ _userexp=$(printf '%-5s' "$_expuser")
 _tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
 clear
 echo -e "\033[0;34m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\033[0m" | lolcat -a
-echo -e "\E[41;1;37m  \e[96m☆@Ahmed_Gen \e[96m⇱ VPSEG CONTROL ⇲  \e[96m☆@ko0o2   \E[0m" | lolcat -a
+echo -e "\E[41;1;104m  ☆@Ahmed_Gen ⇱ VPSEG CONTROL ⇲  ☆@ko0o2   \E[0m" | lolcat -a
 echo -e "\033[0;34m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\033[0m" | lolcat -a
 echo -e "\033[1;3232mSYSTEM            MEMORY RAM      PROCESSOR "
 echo -e "\033[1;31mOS: \033[1;37m$_system \033[1;31mTotal:\033[1;37m$_ram \033[1;31mCores: \033[1;37m$_core\033[0m"
