@@ -464,7 +464,7 @@ Support:
 	sts1="\033[1;32m◉ "
 } || {
 	sts1="\033[1;31m○ "
-};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬"" ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 Support:
 
 ◽ Online Games
@@ -515,14 +515,14 @@ Support:
                             } || {
                               sts1="\033[1;31m○ "
                             }
-                            echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m";
-echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+                            echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m";  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 Support:
+
 ◽ Online Games
 ◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ
 ◽ Whatsapp Video call
-ᵇʸ @VPSEG_BOT @team_eg ☆ @Free_Net11
-▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "Could not create user!"; tput sgr0
+   ᵇʸ @VPSEG_BOT @team_eg ☆ @Free_Net11
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "Could not create user!" ; tput sgr0
 
                           fi
                         fi
