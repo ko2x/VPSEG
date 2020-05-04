@@ -342,7 +342,7 @@ else
                                 }
                                 clear
                                 echo -e "\E[44;1;37m       SSH ACCOUNT CREATED!      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUser: \033[1;37m$username" ; echo -e "\033[1;32mpassword: \033[1;37m$password" ; echo -e "\033[1;32mexpires: \033[1;37m$gui" ; echo -e "\033[1;32mConnection limit: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;32mSERVICE: \033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo ""; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUser: \033[1;37m$username" ; echo -e "\033[1;32mpassword: \033[1;37m$password" ; echo -e "\033[1;32mexpires: \033[1;37m$gui" ; echo -e "\033[1;32mConnection limit: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
                             [[ "$(netstat -nltp|grep 'sslh' |wc -l)" != '0' ]] && {
                               echo -e "\033[1;32mSERVIC: \033[1;33mSSLH: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'sslh' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts7="\033[1;32m◉ "
@@ -425,7 +425,7 @@ Support:
                               else
                                 clear
                                 echo -e "\E[44;1;37m       SSH ACCOUNT CREATED !      \E[0m"
-                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "";echo"▬▬▬▬▬▬▬▬▬▬▬▬▬▬" echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;32mSERVICE: \033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
+                                [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "";echo"▬▬▬▬▬▬▬▬▬▬▬▬▬▬" echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
                             [[ "$(netstat -nltp|grep 'sslh' |wc -l)" != '0' ]] && {
                               echo -e "\033[1;32mSERVIC: \033[1;33mSSLH: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'sslh' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts7="\033[1;32m◉ "
@@ -476,7 +476,7 @@ Support:
                           else
                             clear
                             echo -e "\E[44;1;37m       SSH ACCOUNT CREATED !      \E[0m"
-                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬"; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;32mSERVICE: \033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
+                            [ $? -eq 0 ] && tput setaf 2 ; tput bold ; echo "▬▬▬▬▬▬▬▬▬▬▬▬▬▬"; echo -e "\033[1;32mIP: \033[1;37m$IP" ; echo -e "\033[1;32mUSERNAME: \033[1;37m$username" ; echo -e "\033[1;32mPASSWORD: \033[1;37m$password" ; echo -e "\033[1;32mEXPIRE: \033[1;37m$gui" ; echo -e "\033[1;32mLIMIT: \033[1;37m$sshlimiter" ;echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬";echo -e "\033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)" && sts6="\033[1;32m◉ "
                             [[ "$(netstat -nltp|grep 'sslh' |wc -l)" != '0' ]] && {
                               echo -e "\033[1;32mSERVIC: \033[1;33mSSLH: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'sslh' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts7="\033[1;32m◉ "
