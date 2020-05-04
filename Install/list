@@ -67,7 +67,7 @@ wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/reiniciarservic
 chmod +x /bin/reiniciarservicos
 wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Modulos/reiniciarsistema.sh -O /bin/reiniciarsistema > /dev/null 2>&1
 chmod +x /bin/reiniciarsistema
-wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FREE/master/Modulos/remover.sh -O /bin/remover > /dev/null 2>&1
+wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/remover.sh -O /bin/remover > /dev/null 2>&1
 chmod +x /bin/remover
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/senharoot.sh -O /bin/senharoot > /dev/null 2>&1
 chmod +x /bin/senharoot
