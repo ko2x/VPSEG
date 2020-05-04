@@ -351,32 +351,32 @@ else
                             }
 
                             [[ "$(netstat -nplt |grep 'openvpn' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts5="\033[1;32m◉ "
                             } || {
                               sts5="\033[1;31m○ "
                             }
 
                             [[ "$(netstat -nplt |grep 'python' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts4="\033[1;32m◉ "
                             } || {
                               sts4="\033[1;31m○ "
                             }
                             [[ -e "/etc/stunnel/stunnel.conf" ]] && {
-                              echo -e "\033[1;32mSERVICO: \033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts3="\033[1;32m◉ "
                             } || {
                               sts3="\033[1;31m○ "
                             }
                             [[ "$(netstat -nltp|grep 'dropbear' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
                               sts2="\033[1;32m◉ "
                             } || {
                               sts2="\033[1;31m○ "
                             }
                             [[ "$(netstat -nplt |grep 'squid'| wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
                               sts1="\033[1;32m◉ "
                             } || {
                               sts1="\033[1;31m○ "
@@ -434,32 +434,32 @@ Support:
                             }
 
                             [[ "$(netstat -nplt |grep 'openvpn' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts5="\033[1;32m◉ "
                             } || {
                               sts5="\033[1;31m○ "
                             }
 
                             [[ "$(netstat -nplt |grep 'python' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts4="\033[1;32m◉ "
                             } || {
                               sts4="\033[1;31m○ "
                             }
                             [[ -e "/etc/stunnel/stunnel.conf" ]] && {
-                              echo -e "\033[1;32mSERVICO: \033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts3="\033[1;32m◉ "
                             } || {
                               sts3="\033[1;31m○ "
                             }
                             [[ "$(netstat -nltp|grep 'dropbear' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
                               sts2="\033[1;32m◉ "
                             } || {
                               sts2="\033[1;31m○ "
                             }
                             [[ "$(netstat -nplt |grep 'squid'| wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
                               sts1="\033[1;32m◉ "
                             } || {
                               sts1="\033[1;31m○ "
@@ -485,32 +485,32 @@ Support:
                             }
 
                             [[ "$(netstat -nplt |grep 'openvpn' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'openvpn' |awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts5="\033[1;32m◉ "
                             } || {
                               sts5="\033[1;31m○ "
                             }
 
                             [[ "$(netstat -nplt |grep 'python' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mPROXY SOCKS \033[1;32mPORTA: \033[1;37m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts4="\033[1;32m◉ "
                             } || {
                               sts4="\033[1;31m○ "
                             }
                             [[ -e "/etc/stunnel/stunnel.conf" ]] && {
-                              echo -e "\033[1;32mSERVICO: \033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
+                              echo -e "\033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'stunnel' | awk {'print $4'} |cut -d: -f2 |xargs)"
                               sts3="\033[1;32m◉ "
                             } || {
                               sts3="\033[1;31m○ "
                             }
                             [[ "$(netstat -nltp|grep 'dropbear' |wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
                               sts2="\033[1;32m◉ "
                             } || {
                               sts2="\033[1;31m○ "
                             }
                             [[ "$(netstat -nplt |grep 'squid'| wc -l)" != '0' ]] && {
-                              echo -e "\033[1;32mSERVICES: \033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
+                              echo -e "\033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt |grep 'squid' | awk -F ":" {'print $4'} | xargs)"
                               sts1="\033[1;32m◉ "
                             } || {
                               sts1="\033[1;31m○ "
