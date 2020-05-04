@@ -205,13 +205,13 @@ echo -ne "\033[1;32mPUT YOUR CHOICE \033[1;33m?\033[1;31m?\033[1;37m : "; read x
 case "$x" in
    20)
    clear
-   addhost
+   echo -e "\033[1;33m]\033[1;37m -\033[1;32m sorry this feature isn't available yet !\033[1;37m" | lolcat -a
    echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
    menu2
    ;;
    21)
    clear
-   delhost
+   echo -e "\033[1;33m]\033[1;37m -\033[1;32m sorry this feature isn't available yet !\033[1;37m" | lolcat -a
    echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN ao \033[1;32mMENU!\033[0m" | lolcat -a; read
    menu2
    ;;
