@@ -19,7 +19,7 @@ chown nobody:$GROUPNAME /etc/openvpn/crl.pem
 [[ ! -e /usr/lib/sshplus ]] && rm -rf /bin/ > /dev/null 2>&1
 database="/root/usuarios.db"
 clear
-tput setaf 7 ; tput setab 4 ; tput bold ; printf '%32s%s%-13s\n' "Remover Usuário SSH" ; tput sgr0
+tput setaf 7 ; tput setab 4 ; tput bold ; printf '%32s%s%-13s\n' "REMOVE SSH USERER" ; tput sgr0
 echo ""
 echo -e "\033[1;31m[\033[1;36m1\033[1;31m]\033[1;33m REMOVE A USER"
 echo -e "\033[1;31m[\033[1;36m2\033[1;31m]\033[1;33m REMOVE ALL USERS"
@@ -69,7 +69,7 @@ else
 		if [[ `grep -c $user /tmp/rem` -eq 0 ]]; then
 			deluser --force $user > /dev/null 2>&1
 			echo ""
-			echo -e "\E[41;1;37m Usuario $user removido com sucesso! \E[0m"
+			echo -e "\E[41;1;37m USER $user successfully removed!! \E[0m"
 			grep -v ^$user[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
 			rm /etc/SSHPlus/senha/$user 1>/dev/null 2>/dev/null
 			if [[ -e /etc/openvpn/server.conf ]]; then
