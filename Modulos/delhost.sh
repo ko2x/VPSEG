@@ -20,7 +20,7 @@ else
 		else
 		if [[ `grep -c "^$host" $payload` -ne 1 ]]
 		then
-			tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "O domínio $host não foi encontrado no arquivo $payload" ; echo "" ; tput sgr0
+			tput setaf 7 ; tput setab 4 ; tput bold ; echo "" ; echo "The domain $host file not found $payload" ; echo "" ; tput sgr0
 			exit 1
 		else
 			grep -v "^$host" $payload > /tmp/a && mv /tmp/a $payload
