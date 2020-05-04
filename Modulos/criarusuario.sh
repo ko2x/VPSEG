@@ -381,18 +381,18 @@ else
 	sts1="\033[1;32m◉ "
 } || {
 	sts1="\033[1;31m○ "
-};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
-Support:                  
+};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Support:
 
-◽ Online Games            
-◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ                                                              
-◽ Whatsapp Video call          
+◽ Online Games
+◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ
+◽ Whatsapp Video call
    ᵇʸ @VPSEG_BOT @team_eg ☆ @Free_Net11
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "The user could not be created!" ; tput sgr0
                                 sleep 1
                                 function aguarde {
                                   helice () {
-                                    gerarovpn > /dev/null 2>&1 & 
+                                    gerarovpn > /dev/null 2>&1 &
                                     tput civis
                                     while [ -d /proc/$! ]
                                     do
@@ -464,12 +464,12 @@ Support:
 	sts1="\033[1;32m◉ "
 } || {
 	sts1="\033[1;31m○ "
-};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
-Support:                  
+};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Support:
 
-◽ Online Games            
-◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ                                                              
-◽ Whatsapp Video call          
+◽ Online Games
+◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ
+◽ Whatsapp Video call
    ᵇʸ @VPSEG_BOT @team_eg ☆ @Free_Net11
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "Could not create user!" ; tput sgr0
                               fi
@@ -515,12 +515,12 @@ Support:
 	sts1="\033[1;32m◉ "
 } || {
 	sts1="\033[1;31m○ "
-};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬                                              
-Support:                  
+};echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ;  echo -e "\033[1;32m▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+Support:
 
-◽ Online Games            
-◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ                                                              
-◽ Whatsapp Video call          
+◽ Online Games
+◽ ʏᴏᴜᴛᴜʙᴇ ʜᴅ
+◽ Whatsapp Video call
    ᵇʸ @VPSEG_BOT @team_eg ☆ @Free_Net11
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬" || echo "Could not create user!"; tput sgr0
                           fi
@@ -535,5 +535,5 @@ Support:
         fi
       fi
     fi
-  fi  
+  fi
 fi
