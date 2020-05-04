@@ -27,7 +27,7 @@ else
     data="\033[1;31mEXPIRED\033[0m"
     else
     dat="$(date -d"$datauser" '+%Y-%m-%d')"
-    data=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDias\033[0m")
+    data=$(echo -e "$((($(date -ud $dat +%s)-$(date -ud $(date +%Y-%m-%d) +%s))/86400)) \033[1;37mDAYS\033[0m")
     fi
 fi
 Usuario=$(printf ' %-15s' "$users")
