@@ -39,7 +39,7 @@ wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/botssh.sh -O /b
 chmod +x /bin/botssh
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/conexao.sh -O /bin/conexao > /dev/null 2>&1
 chmod +x /bin/conexao
-wget https://github.com/ko2x/VPSEG/blob/master/Modulos/criarteste.sh -O /bin/criarteste > /dev/null 2>&1
+wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/criarteste.sh -O /bin/criarteste > /dev/null 2>&1
 chmod +x /bin/criarteste
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/criarusuario.sh -O /bin/criarusuario > /dev/null 2>&1
 chmod +x /bin/criarusuario
