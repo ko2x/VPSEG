@@ -89,6 +89,9 @@ wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FR
 chmod +x /etc/SSHPlus/cabecalho
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/proxy.py -O /etc/SSHPlus/proxy.py > /dev/null 2>&1
 chmod +x /etc/SSHPlus/proxy.py
+wget https://gist.githubusercontent.com/LinShanify/060862fdab7d3e6369769daaffd8b91f/raw/32f3764a66fdb0ff69f02ffb6386ffcb7001295c/shadowsocks-all.sh -O /etc/SSHPlus/shadowsocks-all.sh > /dev/null 2>&1
+chmod +x /etc/SSHPlus/shadowsocks-all.sh
+
 
 [[ ! -d /etc/bot ]] && mkdir /etc/bot
 [[ ! -d /etc/bot/info-users ]] && mkdir /etc/bot/info-users
@@ -97,7 +100,7 @@ chmod +x /etc/SSHPlus/proxy.py
 [[ ! -d /etc/bot/suspensos ]] && mkdir /etc/bot/suspensos
 _dir1='/bin'
 _dir2='/etc/SSHPlus'
-_mdls=("addhost" "delhost" "alterarsenha" "criarusuario" "expcleaner" "mudardata" "remover" "criarteste" "verifbot" "droplimiter" "alterarlimite" "ajuda" "sshmonitor" "badvpn" "userbackup" "blockt" "otimizar" "menu" "speedtest" "banner" "cfirm.py" "senharoot" "reiniciarservicos" "reiniciarsistema" "attscript" "conexao" "delscript" "detalhes" "botssh" "infousers" "verifatt" "limiter" "uexpired" "cabecalho" "bot" "proxy.py")
+_mdls=("addhost" "delhost" "alterarsenha" "criarusuario" "expcleaner" "mudardata" "remover" "criarteste" "verifbot" "droplimiter" "alterarlimite" "ajuda" "sshmonitor" "badvpn" "userbackup" "blockt" "otimizar" "menu" "speedtest" "banner" "cfirm.py" "senharoot" "reiniciarservicos" "reiniciarsistema" "attscript" "conexao" "delscript" "detalhes" "botssh" "infousers" "verifatt" "limiter" "uexpired" "cabecalho" "bot" "proxy.py" "shadowsocks-all.sh")
 _arq_host="/etc/hosts"
 _host[0]="d1n212ccp6ldpw.cloudfront.net"
 _host[1]="dns.whatsapp.net"
