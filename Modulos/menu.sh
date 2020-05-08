@@ -409,7 +409,7 @@ case "$x" in
     ;;
    19)
    clear
-   bash /etc/SSHPlus/shadowsocks-all.sh
+   ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
    exit;
    ;;
    0 | 00)
