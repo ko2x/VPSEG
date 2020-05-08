@@ -89,7 +89,7 @@ wget https://raw.githubusercontent.com/AAAAAEXQOSyIpN2JZ0ehUQ/SSHPLUS-MANAGER-FR
 chmod +x /etc/SSHPlus/cabecalho
 wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/proxy.py -O /etc/SSHPlus/proxy.py > /dev/null 2>&1
 chmod +x /etc/SSHPlus/proxy.py
-wget https://gist.githubusercontent.com/LinShanify/060862fdab7d3e6369769daaffd8b91f/raw/32f3764a66fdb0ff69f02ffb6386ffcb7001295c/shadowsocks-all.sh -O /etc/SSHPlus/shadowsocks-all.sh > /dev/null 2>&1
+wget https://raw.githubusercontent.com/teddysunbackup/shadowsocks_install/master/shadowsocks-all.sh -O /etc/SSHPlus/shadowsocks-all.sh > /dev/null 2>&1
 chmod +x /etc/SSHPlus/shadowsocks-all.sh
 
 
