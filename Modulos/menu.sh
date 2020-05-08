@@ -410,6 +410,7 @@ case "$x" in
    19)
    clear
    ./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
+   sleep 20
    exit;
    ;;
    0 | 00)
