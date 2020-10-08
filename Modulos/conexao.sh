@@ -1770,54 +1770,54 @@ fun_sslh () {
 }
 
 x="ok"
-	fun_conexao() {
-		while true $x != "ok"; do
-			[[ ! -e '/home/sshplus' ]] && exit 0
-			clear
-			echo -e "\E[44;1;37m                CONNECTION MODE                 \E[0m\n"
-			echo -e "\033[1;32mservice: \033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)" && sts6="\033[1;32m◉ "
+fun_conexao() {
+    while true $x != "ok"; do
+        [[ ! -e '/home/sshplus' ]] && exit 0
+        clear
+        echo -e "\E[44;1;37m                CONNECTION MODE                 \E[0m\n"
+        echo -e "\033[1;32mservice: \033[1;33mOPENSSH \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)" && sts6="\033[1;32m◉ "
 
-			[[ "$(netstat -tlpn | grep 'sslh' | wc -l)" != '0' ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mSSLH: \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'sslh' | awk {'print $4'} | cut -d: -f2 | xargs)"
-				sts7="\033[1;32m◉ "
-			} || {
-				sts7="\033[1;31m○ "
-			}
+        [[ "$(netstat -tlpn | grep 'sslh' | wc -l)" != '0' ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mSSLH: \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'sslh' | awk {'print $4'} | cut -d: -f2 | xargs)"
+            sts7="\033[1;32m◉ "
+        } || {
+            sts7="\033[1;31m○ "
+        }
 
-			[[ "$(netstat -tlpn | grep 'openvpn' | wc -l)" != '0' ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'openvpn' | awk {'print $4'} | cut -d: -f2 | xargs)"
-				sts5="\033[1;32m◉ "
-			} || {
-				sts5="\033[1;31m○ "
-			}
+        [[ "$(netstat -tlpn | grep 'openvpn' | wc -l)" != '0' ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mOPENVPN: \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'openvpn' | awk {'print $4'} | cut -d: -f2 | xargs)"
+            sts5="\033[1;32m◉ "
+        } || {
+            sts5="\033[1;31m○ "
+        }
 
-			[[ "$(netstat -tlpn | grep 'python' | wc -l)" != '0' ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mPROXY SOCKS \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)"
-				sts4="\033[1;32m◉ "
-			} || {
-				sts4="\033[1;31m○ "
-			}
-			[[ -e "/etc/stunnel/stunnel.conf" ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'stunnel' | awk {'print $4'} | cut -d: -f2 | xargs)"
-				sts3="\033[1;32m◉ "
-			} || {
-				sts3="\033[1;31m○ "
-			}
-			[[ "$(netstat -tlpn | grep 'dropbear' | wc -l)" != '0' ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
-				sts2="\033[1;32m◉ "
-			} || {
-				sts2="\033[1;31m○ "
-			}
-			[[ "$(netstat -tlpn | grep 'squid' | wc -l)" != '0' ]] && {
-				echo -e "\033[1;32mSERVICE: \033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'squid' | awk -F ":" {'print $4'} | xargs)"
-				sts1="\033[1;32m◉ "
-			} || {
-				sts1="\033[1;31m○ "
-			}
-			echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-			echo ""
-			echo -e "\033[1;31m[\033[1;36m01\033[1;31m] \033[1;37m• \033[1;33mOPENSSH $sts6\033[1;31m
+        [[ "$(netstat -tlpn | grep 'python' | wc -l)" != '0' ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mPROXY SOCKS \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)"
+            sts4="\033[1;32m◉ "
+        } || {
+            sts4="\033[1;31m○ "
+        }
+        [[ -e "/etc/stunnel/stunnel.conf" ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mSSL TUNNEL \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'stunnel' | awk {'print $4'} | cut -d: -f2 | xargs)"
+            sts3="\033[1;32m◉ "
+        } || {
+            sts3="\033[1;31m○ "
+        }
+        [[ "$(netstat -tlpn | grep 'dropbear' | wc -l)" != '0' ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mDROPBEAR \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'dropbear' | awk -F ":" {'print $4'} | xargs)"
+            sts2="\033[1;32m◉ "
+        } || {
+            sts2="\033[1;31m○ "
+        }
+        [[ "$(netstat -tlpn | grep 'squid' | wc -l)" != '0' ]] && {
+            echo -e "\033[1;32mSERVICE: \033[1;33mSQUID \033[1;32mPORT: \033[1;37m$(netstat -nplt | grep 'squid' | awk -F ":" {'print $4'} | xargs)"
+            sts1="\033[1;32m◉ "
+        } || {
+            sts1="\033[1;31m○ "
+        }
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo ""
+        echo -e "\033[1;31m[\033[1;36m01\033[1;31m] \033[1;37m• \033[1;33mOPENSSH $sts6\033[1;31m
 [\033[1;36m02\033[1;31m] \033[1;37m• \033[1;33mSQUID PROXY $sts1\033[1;31m
 [\033[1;36m03\033[1;31m] \033[1;37m• \033[1;33mDROPBEAR $sts2\033[1;31m
 [\033[1;36m04\033[1;31m] \033[1;37m• \033[1;33mOPENVPN $sts5\033[1;31m
@@ -1826,52 +1826,52 @@ x="ok"
 [\033[1;36m07\033[1;31m] \033[1;37m• \033[1;33mSSLH MULTIPLEX(portugal) $sts7\033[1;31m
 [\033[1;36m08\033[1;31m] \033[1;37m• \033[1;33mBACK \033[1;32m<\033[1;33m<\033[1;31m< \033[1;31m
 [\033[1;36m00\033[1;31m] \033[1;37m• \033[1;33mEXIT \033[1;32m<\033[1;33m<\033[1;31m< \033[0m"
-			echo ""
-			echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
-			echo ""
-			tput civis
-			echo -ne "\033[1;32mWHAT DO YOU WANT TO DO\033[1;33m?\033[1;31m?\033[1;37m "
-			read x
-			tput cnorm
-			clear
-			case $x in
-			1 | 01)
-				fun_openssh
-				;;
-			2 | 02)
-				fun_squid
-				;;
-			3 | 03)
-				fun_drop
-				;;
-			4 | 04)
-				fun_openvpn
-				;;
-			5 | 05)
-				fun_socks
-				;;
-			6 | 06)
-				inst_ssl
-				;;
-			7 | 07)
-				fun_sslh
-				;;
-			8 | 08)
-				menu
-				;;
-			0 | 00)
-				echo -e "\033[1;31mGoing out...\033[0m"
-				sleep 2
-				clear
-				exit
-				;;
-			*)
-				echo -e "\033[1;31mInvalid option !\033[0m"
-				sleep 2
-				;;
-			esac
-		done
-	}
-	fun_conexao
+        echo ""
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo ""
+        tput civis
+        echo -ne "\033[1;32mWHAT DO YOU WANT TO DO\033[1;33m?\033[1;31m?\033[1;37m "
+        read x
+        tput cnorm
+        clear
+        case $x in
+        1 | 01)
+            fun_openssh
+            ;;
+        2 | 02)
+            fun_squid
+            ;;
+        3 | 03)
+            fun_drop
+            ;;
+        4 | 04)
+            fun_openvpn
+            ;;
+        5 | 05)
+            fun_socks
+            ;;
+        6 | 06)
+            inst_ssl
+            ;;
+        7 | 07)
+            fun_sslh
+            ;;
+        8 | 08)
+            menu
+            ;;
+        0 | 00)
+            echo -e "\033[1;31mGoing out...\033[0m"
+            sleep 2
+            clear
+            exit
+            ;;
+        *)
+            echo -e "\033[1;31mInvalid option !\033[0m"
+            sleep 2
+            ;;
+        esac
+    done
+}
+fun_conexao
 }
 
