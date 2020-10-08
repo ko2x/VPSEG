@@ -1,5 +1,5 @@
 #!/bin/bash
-[[ $(awk -F" " '{print $2}' /usr/lib/licence) == "@CRAZY_VPN" ]] && {
+[ ! -f /dsds/s ] && {
 	ram1=$(free -h | grep -i mem | awk {'print $2'})
 	ram2=$(free -h | grep -i mem | awk {'print $4'})
 	ram3=$(free -h | grep -i mem | awk {'print $3'})
@@ -1138,7 +1138,7 @@ duplicate-cn" >>/etc/openvpn/server.conf
 				echo 1 >/proc/sys/net/ipv4/ip_forward
 				if [[ "$OS" = 'debian' && ! -e $RCLOCAL ]]; then
 					echo '#!/bin/sh -e
-exit 0' >$RCLOCAL
+exit 1' >$RCLOCAL
 				fi
 				chmod +x $RCLOCAL
 				iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j SNAT --to $IP
@@ -1644,7 +1644,7 @@ exit 0' >$RCLOCAL
 	x="ok"
 	fun_conexao() {
 		while true $x != "ok"; do
-			[[ ! -e '/home/sshplus' ]] && exit 0
+			[[ ! -e '/home/sshplus' ]] && echo -e "hey"
 			clear
 			echo -e "\E[44;1;37m                CONNECTION MODE                 \E[0m\n"
 			echo -e "\033[1;32mSERVICE: \033[1;33mopenssh \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)" && sts6="\033[1;32m◉ "
