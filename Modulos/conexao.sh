@@ -1241,283 +1241,482 @@ sleep 3
 fun_conexao
 }
 
-fun_socks () {
-	clear
-    echo -e "\E[44;1;37m            GERENCIAR PROXY SOCKS             \E[0m"
-    echo ""
-    [[ $(netstat -nplt |grep 'python' | wc -l) != '0' ]] && {
-        sks='\033[1;32mON'
-        var_sks1="DESATIVAR SOCKS"
-        echo -e "\033[1;33mPORTAS\033[1;37m: \033[1;32m$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)"
-    } || {
-        var_sks1="ATIVAR SOCKS"
-        sks='\033[1;31mOFF'
-    }
-    echo ""
-	echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33m$var_sks1\033[0m"
-	echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mABRIR PORTA\033[0m"
-	echo -e "\033[1;31m[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mALTERAR STATUS\033[0m"
-	echo -e "\033[1;31m[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mVOLTAR\033[0m"
-	echo ""
-	echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;37m "; read resposta
-	if [[ "$resposta" = '1' ]]; then
-		if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
-			clear
-			echo -e "\E[41;1;37m             PROXY SOCKS              \E[0m"
-			echo ""
-			fun_socksoff () {
-				for pidproxy in  `screen -ls | grep ".proxy" | awk {'print $1'}`; do
-					screen -r -S "$pidproxy" -X quit
-				done
-				[[ $(grep -wc "proxy.py" /etc/autostart) != '0' ]] && {
-		    		sed -i '/proxy.py/d' /etc/autostart
-		    	}
-				sleep 1
-				screen -wipe > /dev/null
-			}
-			echo -e "\033[1;32mDISABLING PROXY SOCKS\033[1;33m"
-			echo ""
-			fun_bar 'fun_socksoff'
-			echo ""
-			echo -e "\033[1;32mPROXY SOCKS DISABLED SUCCESSFULLY!\033[1;33m"
-			sleep 3
-			fun_socks
-		else
-			clear
-			echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
-		    echo ""
-		    echo -ne "\033[1;32mWHICH PORT YOU WISH TO USE \033[1;33m?\033[1;37m: "; read porta
-		    if [[ -z "$porta" ]]; then
-		    	echo ""
-		    	echo -e "\033[1;31mPorta invalid!"
-		    	sleep 3
-		    	clear
-		    	fun_conexao
-		    fi
-		    verif_ptrs $porta
-		    fun_inisocks () {
-		    	sleep 1
-		    	screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
-		    	[[ $(grep -wc "proxy.py" /etc/autostart) = '0' ]] && {
-		    		echo -e "netstat -tlpn | grep python > /dev/null && echo 'ON' || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >> /etc/autostart
-		    	} || {
-		            sed -i '/proxy.py/d' /etc/autostart
-		            echo -e "netstat -tlpn | grep python > /dev/null && echo 'ON' || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >> /etc/autostart
-		        }
-		    }
-		    echo ""
-		    echo -e "\033[1;32mSTARTING PROXY SOCKS\033[1;33m"
-		    echo ""
-		    fun_bar 'fun_inisocks'
-		    echo ""
-		    echo -e "\033[1;32mPROXY SOCKS ENABLED SUCCESSFULLY\033[1;33m"
-		    sleep 3
-		    fun_socks
-		fi
-	elif [[ "$resposta" = '2' ]]; then
-		if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
-			sockspt=$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)
-			clear
-			echo -e "\E[44;1;37m            PROXY SOCKS             \E[0m"
-			echo ""
-			echo -e "\033[1;33mPORT IN USE: \033[1;32m$sockspt"
-			echo ""
-			echo -ne "\033[1;32mWHICH PORT YOU WISH TO USE \033[1;33m?\033[1;37m: "; read porta
-			if [[ -z "$porta" ]]; then
-				echo ""
-				echo -e "\033[1;31mPorta invalid!"
-				sleep 3
-				clear
-				fun_conexao
-			fi
-			verif_ptrs $porta
-			echo ""
-			echo -e "\033[1;32mSTARTING PROXY SOCKS AT THE PORT \033[1;31m$porta\033[1;33m"
-			echo ""
-			abrirptsks () {
-				sleep 1
-				screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
-				sleep 1
-			}
-			fun_bar 'abrirptsks'
-			echo ""
-			echo -e "\033[1;32mPROXY SOCKS ATIVADO COM SUCESSO\033[1;33m"
-			sleep 3
-			fun_socks
-		else
-			clear
-			echo -e "\033[1;31mFUNCAO INDISPONIVEL\n\n\033[1;33mATIVE O SOCKS PRIMEIRO !\033[1;33m"
-			sleep 2
-			fun_socks
-		fi
-	elif [[ "$resposta" = '3' ]]; then
-		if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
-			clear
-			msgsocks=$(cat /etc/SSHPlus/proxy.py |grep -E "MSG =" | awk -F = '{print $2}' |cut -d "'" -f 2)
-			echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
-			echo ""
-			echo -e "\033[1;33mSTATUS: \033[1;32m$msgsocks"
-			echo""
-			echo -ne "\033[1;32mINFORME SEU STATUS\033[1;31m:\033[1;37m "; read msgg
-			if [[ -z "$msgg" ]]; then
-				echo ""
-				echo -e "\033[1;31mStatus invalido!"
-				sleep 3
-				fun_conexao
-			fi
-			echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m BLUE"
-			echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m GREEN"
-			echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m RED"
-			echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m YELLOW"
-			echo -e "\033[1;31m[\033[1;36m05\033[1;31m]\033[1;33m ROSE"
-			echo -e "\033[1;31m[\033[1;36m06\033[1;31m]\033[1;33m CYANO"
-			echo -e "\033[1;31m[\033[1;36m07\033[1;31m]\033[1;33m ORANGE"
-			echo -e "\033[1;31m[\033[1;36m08\033[1;31m]\033[1;33m PURPLE"
-			echo -e "\033[1;31m[\033[1;36m09\033[1;31m]\033[1;33m PRETO"
-			echo -e "\033[1;31m[\033[1;36m10\033[1;31m]\033[1;33m NO COLOR"
-			echo ""
-			echo -ne "\033[1;32mWHAT'S THE COLOR\033[1;31m ?\033[1;37m : "; read sts_cor
-			if [[ "$sts_cor" = "1" ]] || [[ "$sts_cor" = "01" ]]; then
-				cor_sts='blue'
-			elif [[ "$sts_cor" = "2" ]] || [[ "$sts_cor" = "02" ]]; then
-				cor_sts='green'
-			elif [[ "$sts_cor" = "3" ]] || [[ "$sts_cor" = "03" ]]; then
-				cor_sts='red'
-			elif [[ "$sts_cor" = "4" ]] || [[ "$sts_cor" = "04" ]]; then
-				cor_sts='yellow'
-			elif [[ "$sts_cor" = "5" ]] || [[ "$sts_cor" = "05" ]]; then
-				cor_sts='#F535AA'
-			elif [[ "$sts_cor" = "6" ]] || [[ "$sts_cor" = "06" ]]; then
-				cor_sts='cyan'
-			elif [[ "$sts_cor" = "7" ]] || [[ "$sts_cor" = "07" ]]; then
-				cor_sts='#FF7F00'
-			elif [[ "$sts_cor" = "8" ]] || [[ "$sts_cor" = "08" ]]; then
-				cor_sts='#9932CD'
-			elif [[ "$sts_cor" = "9" ]] || [[ "$sts_cor" = "09" ]]; then
-				cor_sts='black'
-			elif [[ "$sts_cor" = "10" ]]; then
-				cor_sts='null'
-			else
-				echo -e "\n\033[1;33mINVALID OPTION !"
-				cor_sts='null'
-			fi
-			fun_msgsocks () {
-				msgsocks2=$(cat /etc/SSHPlus/proxy.py |grep "MSG =" | awk -F = '{print $2}')
-				sed -i "s/$msgsocks2/ '$msgg'/g" /etc/SSHPlus/proxy.py
-				sleep 1
-				cor_old=$(grep 'color=' /etc/SSHPlus/proxy.py | cut -d '"' -f2)
-				sed -i "s/$cor_old/$cor_sts/g" /etc/SSHPlus/proxy.py
 
-			}
-			echo ""
-			echo -e "\033[1;32mCHANGING STATUS!"
-			echo ""
-			fun_bar 'fun_msgsocks'
-			restartsocks () {
-				if ps x | grep proxy.py|grep -v grep 1>/dev/null 2>/dev/null; then
-				    echo -e "$(netstat -nplt |grep 'python' | awk {'print $4'} |cut -d: -f2 |xargs)" > /tmp/Pt_sks
-					for pidproxy in  `screen -ls | grep ".proxy" | awk {'print $1'}`; do
+
+	fun_socks() {
+		clear
+		echo -e "\E[44;1;37m            MANAGE PROXY SOCKS             \E[0m"
+		echo ""
+		[[ $(netstat -nplt | grep -wc 'python') != '0' ]] && {
+			sks='\033[1;32mON'
+			echo -e "\033[1;33mPORTAS\033[1;37m: \033[1;32m$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)"
+		} || {
+			sks='\033[1;31mOFF'
+		}
+		[[ $(screen -list | grep -wc 'proxy') != '0' ]] && var_sks1="\033[1;32m◉" || var_sks1="\033[1;31m○"
+		[[ $(screen -list | grep -wc 'openpy') != '0' ]] && sksop="\033[1;32m◉" || sksop="\033[1;31m○"
+		echo ""
+		echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mSOCKS SSH $var_sks1 \033[0m"
+		echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mSOCKS OEPNVPN $sksop \033[0m"
+		echo -e "\033[1;31m[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mOPEN PORT\033[0m"
+		echo -e "\033[1;31m[\033[1;36m4\033[1;31m] \033[1;37m• \033[1;33mCHANGE STATUS\033[0m"
+		echo -e "\033[1;31m[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mBACK\033[0m"
+		echo ""
+		echo -ne "\033[1;32mWHAT DO YOU WANT TO DO\033[1;33m?\033[1;37m "
+		read resposta
+		if [[ "$resposta" = '1' ]]; then
+			if ps x | grep -w proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+				clear
+				echo -e "\E[41;1;37m             PROXY SOCKS              \E[0m"
+				echo ""
+				fun_socksoff() {
+					for pidproxy in $(screen -ls | grep ".proxy" | awk {'print $1'}); do
 						screen -r -S "$pidproxy" -X quit
 					done
-					screen -wipe > /dev/null
-					_Ptsks="$(cat /tmp/Pt_sks)"
+					[[ $(grep -wc "proxy.py" /etc/autostart) != '0' ]] && {
+						sed -i '/proxy.py/d' /etc/autostart
+					}
 					sleep 1
-					screen -dmS proxy python /etc/SSHPlus/proxy.py $_Ptsks
-					rm /tmp/Pt_sks
-				fi
-			}
-			echo ""
-			echo -e "\033[1;32mRESTARTING PROXY SOCKS!"
-			echo ""
-			fun_bar 'restartsocks'
-			echo ""
-			echo -e "\033[1;32mSUCCESSFULLY CHANGED STATUS!"
-			sleep 3
-			fun_socks
-		else
-			clear
-			echo -e "\033[1;31mUNAVAILABLE FUNCTION\n\n\033[1;33mATIVE O SOCKS PRIMEIRO !\033[1;33m"
-			sleep 2
-			fun_socks
-		fi
-	elif [[ "$resposta" = '0' ]]; then
-		echo ""
-		echo -e "\033[1;31mRetornando...\033[0m"
-		sleep 2
-		fun_conexao
-	else
-		echo ""
-		echo -e "\033[1;31mOpcao invalida !\033[0m"
-		sleep 2
-		fun_socks
-	fi
+					screen -wipe >/dev/null
+				}
+				echo -e "\033[1;32mDISABLING PROXY SOCKS\033[1;33m"
+				echo ""
+				fun_bar 'fun_socksoff'
+				echo ""
+				echo -e "\033[1;32mPROXY SOCKS DISABLED SUCCESSFULLY!\033[1;33m"
+				sleep 3
+				fun_socks
+			else
+				clear
+				echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
+				echo ""
+				echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+				read porta
+				[[ -z "$porta" ]] && {
+					echo ""
+					echo -e "\033[1;31mPort invaild!"
+					sleep 3
+					clear
+					fun_conexao
+				}
+				verif_ptrs $porta
+				fun_inisocks() {
+					sleep 1
+					screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
+					[[ $(grep -wc "proxy.py" /etc/autostart) = '0' ]] && {
+						echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >>/etc/autostart
+					} || {
+						sed -i '/proxy.py/d' /etc/autostart
+						echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >>/etc/autostart
+					}
+				}
+				echo ""
+				echo -e "\033[1;32mSTARTING THE PROXY SOCKS\033[1;33m"
+				echo ""
+				fun_bar 'fun_inisocks'
+				echo ""
+				echo -e "\033[1;32mSOCKS SUCCESSFULLY ACTIVATED\033[1;33m"
+				sleep 3
+				fun_socks
+			fi
+		elif [[ "$resposta" = '2' ]]; then
+			if ps x | grep -w open.py | grep -v grep 1>/dev/null 2>/dev/null; then
+				clear
+				echo -e "\E[41;1;37m            SOCKS OPENVPN             \E[0m"
+				echo ""
+				fun_socksopenoff() {
+					for pidproxy in $(screen -list | grep -w "openpy" | awk {'print $1'}); do
+						screen -r -S "$pidproxy" -X quit
+					done
+					[[ $(grep -wc "open.py" /etc/autostart) != '0' ]] && {
+						sed -i '/open.py/d' /etc/autostart
+					}
+					sleep 1
+					screen -wipe >/dev/null
+				}
+				echo -e "\033[1;32mDISABLING SOCKS OPEN\033[1;33m"
+				echo ""
+				fun_bar 'fun_socksopenoff'
+				echo ""
+				echo -e "\033[1;32mSOCKS SUCCESSFULLY DISABLED!\033[1;33m"
+				sleep 2
+				fun_socks
+			else
+				clear
+				echo -e "\E[41;1;37m            SOCKS OPENVPN             \E[0m"
+				echo ""
+				echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+				read porta
+				[[ -z "$porta" ]] && {
+					echo ""
+					echo -e "\033[1;31mPort invaild!"
+					sleep 2
+					clear
+					fun_conexao
+				}
+				verif_ptrs $porta
+				fun_inisocksop() {
+					[[ "$(netstat -tlpn | grep 'openvpn' | wc -l)" != '0' ]] && {
+						listoldop=$(grep -w 'DEFAULT_HOST =' /etc/SSHPlus/open.py | cut -d"'" -f2 | cut -d: -f2)
+						listopen=$(netstat -tlpn | grep -w openvpn | grep -v 127.0.0.1 | awk {'print $4'} | cut -d: -f2)
+						sed -i "s/$listoldop/$listopen/" /etc/SSHPlus/open.py
+					}
+					sleep 1
+					screen -dmS openpy python /etc/SSHPlus/open.py $porta
+					[[ $(grep -wc "open.py" /etc/autostart) = '0' ]] && {
+						echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS openpy python /etc/SSHPlus/open.py $porta" >>/etc/autostart
+					} || {
+						sed -i '/open.py/d' /etc/autostart
+						echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS openpy python /etc/SSHPlus/open.py $porta" >>/etc/autostart
+					}
+				}
+				echo ""
+				echo -e "\033[1;32mSTARTING THE SOCKS OPENVPN\033[1;33m"
+				echo ""
+				fun_bar 'fun_inisocksop'
+				echo ""
+				echo -e "\033[1;32mSOCKS OPENVPN SUCCESSFULLY ACTIVATED\033[1;33m"
+				sleep 3
+				fun_socks
+			fi
+		elif [[ "$resposta" = '3' ]]; then
+			if ps x | grep proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+				sockspt=$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)
+				clear
+				echo -e "\E[44;1;37m            PROXY SOCKS             \E[0m"
+				echo ""
+				echo -e "\033[1;33mPORTS IN USE: \033[1;32m$sockspt"
+				echo ""
+				echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+				read porta
+				[[ -z "$porta" ]] && {
+					echo ""
+					echo -e "\033[1;31mPort invalid!"
+					sleep 2
+					clear
+					fun_conexao
+				}
+				verif_ptrs $porta
+				echo ""
+				echo -e "\033[1;32mSTARTING PROXY SOCKS AT THE PORT \033[1;31m$porta\033[1;33m"
+				echo ""
+				abrirptsks() {
+					sleep 1
+					screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
+					sleep 1
+				}
+				fun_bar 'abreptic'
+				echo ""
+				echo -e "\033[1;32mPROXY SOCKS ENABLED SUCCESSFULLY \033[1;33m"
+				sleep 2
+				fun_socks
+			else
+				clear
+				echo -e "\033[1;31mFUNCTION UNAVAILABLE\n\n\033[1;33mACTIVATE SOCKS FIRST !\033[1;33m"
+				sleep 2
+				fun_socks
+			fi
+		elif [[ "$resposta" = '4' ]]; then
+			if ps x | grep -w proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+				clear
+				msgsocks=$(cat /etc/SSHPlus/proxy.py | grep -E "MSG =" | awk -F = '{print $2}' | cut -d "'" -f 2)
+				echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
+				echo ""
+				echo -e "\033[1;33mSTATUS: \033[1;32m$msgsocks"
+				echo""
+				echo -ne "\033[1;32mINFORM YOUR STATUS\033[1;31m:\033[1;37m "
+				read msgg
+				[[ -z "$msgg" ]] && {
+					echo -e "\n\033[1;31mInvalid status!"
+					sleep 2
+					fun_conexao
+				}
+				[[ ${msgg} != ?(+|-)+([a-zA-Z0-9-. ]) ]] && {
+					echo -e "\n\033[1;31m[\033[1;33m!\033[1;31m]\033[1;33mAVOID SPECIAL CHARACTERS\033[0m"
+					sleep 2
 
-}
+	fun_socks() {
+        clear
+        echo -e "\E[44;1;37m            MANAGE PROXY SOCKS             \E[0m"
+        echo ""
+        [[ $(netstat -nplt | grep -wc 'python') != '0' ]] && {
+            sks='\033[1;32mON'
+            echo -e "\033[1;33mPORTAS\033[1;37m: \033[1;32m$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)"
+        } || {
+            sks='\033[1;31mOFF'
+        }
+        [[ $(screen -list | grep -wc 'proxy') != '0' ]] && var_sks1="\033[1;32m◉" || var_sks1="\033[1;31m○"
+        [[ $(screen -list | grep -wc 'openpy') != '0' ]] && sksop="\033[1;32m◉" || sksop="\033[1;31m○"
+        echo ""
+        echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mSOCKS SSH $var_sks1 \033[0m"
+        echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mSOCKS OEPNVPN $sksop \033[0m"
+        echo -e "\033[1;31m[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mOPEN PORT\033[0m"
+        echo -e "\033[1;31m[\033[1;36m4\033[1;31m] \033[1;37m• \033[1;33mCHANGE STATUS\033[0m"
+        echo -e "\033[1;31m[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mBACK\033[0m"
+        echo ""
+        echo -ne "\033[1;32mWHAT DO YOU WANT TO DO\033[1;33m?\033[1;37m "
+        read resposta
+        if [[ "$resposta" = '1' ]]; then
+            if ps x | grep -w proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+                clear
+                echo -e "\E[41;1;37m             PROXY SOCKS              \E[0m"
+                echo ""
+                fun_socksoff() {
+                    for pidproxy in $(screen -ls | grep ".proxy" | awk {'print $1'}); do
+                        screen -r -S "$pidproxy" -X quit
+                    done
+                    [[ $(grep -wc "proxy.py" /etc/autostart) != '0' ]] && {
+                        sed -i '/proxy.py/d' /etc/autostart
+                    }
+                    sleep 1
+                    screen -wipe >/dev/null
+                }
+                echo -e "\033[1;32mDISABLING PROXY SOCKS\033[1;33m"
+                echo ""
+                fun_bar 'fun_socksoff'
+                echo ""
+                echo -e "\033[1;32mPROXY SOCKS DISABLED SUCCESSFULLY!\033[1;33m"
+                sleep 3
+                fun_socks
+            else
+                clear
+                echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
+                echo ""
+                echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+                read porta
+                [[ -z "$porta" ]] && {
+                    echo ""
+                    echo -e "\033[1;31mPort invaild!"
+                    sleep 3
+                    clear
+                    fun_conexao
+                }
+                verif_ptrs $porta
+                fun_inisocks() {
+                    sleep 1
+                    screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
+                    [[ $(grep -wc "proxy.py" /etc/autostart) = '0' ]] && {
+                        echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >>/etc/autostart
+                    } || {
+                        sed -i '/proxy.py/d' /etc/autostart
+                        echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS proxy python /etc/SSHPlus/proxy.py $porta" >>/etc/autostart
+                    }
+                }
+                echo ""
+                echo -e "\033[1;32mSTARTING THE PROXY SOCKS\033[1;33m"
+                echo ""
+                fun_bar 'fun_inisocks'
+                echo ""
+                echo -e "\033[1;32mSOCKS SUCCESSFULLY ACTIVATED\033[1;33m"
+                sleep 3
+                fun_socks
+            fi
+        elif [[ "$resposta" = '2' ]]; then
+            if ps x | grep -w open.py | grep -v grep 1>/dev/null 2>/dev/null; then
+                clear
+                echo -e "\E[41;1;37m            SOCKS OPENVPN             \E[0m"
+                echo ""
+                fun_socksopenoff() {
+                    for pidproxy in $(screen -list | grep -w "openpy" | awk {'print $1'}); do
+                        screen -r -S "$pidproxy" -X quit
+                    done
+                    [[ $(grep -wc "open.py" /etc/autostart) != '0' ]] && {
+                        sed -i '/open.py/d' /etc/autostart
+                    }
+                    sleep 1
+                    screen -wipe >/dev/null
+                }
+                echo -e "\033[1;32mDISABLING SOCKS OPEN\033[1;33m"
+                echo ""
+                fun_bar 'fun_socksopenoff'
+                echo ""
+                echo -e "\033[1;32mSOCKS SUCCESSFULLY DISABLED!\033[1;33m"
+                sleep 2
+                fun_socks
+            else
+                clear
+                echo -e "\E[41;1;37m            SOCKS OPENVPN             \E[0m"
+                echo ""
+                echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+                read porta
+                [[ -z "$porta" ]] && {
+                    echo ""
+                    echo -e "\033[1;31mPort invaild!"
+                    sleep 2
+                    clear
+                    fun_conexao
+                }
+                verif_ptrs $porta
+                fun_inisocksop() {
+                    [[ "$(netstat -tlpn | grep 'openvpn' | wc -l)" != '0' ]] && {
+                        listoldop=$(grep -w 'DEFAULT_HOST =' /etc/SSHPlus/open.py | cut -d"'" -f2 | cut -d: -f2)
+                        listopen=$(netstat -tlpn | grep -w openvpn | grep -v 127.0.0.1 | awk {'print $4'} | cut -d: -f2)
+                        sed -i "s/$listoldop/$listopen/" /etc/SSHPlus/open.py
+                    }
+                    sleep 1
+                    screen -dmS openpy python /etc/SSHPlus/open.py $porta
+                    [[ $(grep -wc "open.py" /etc/autostart) = '0' ]] && {
+                        echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS openpy python /etc/SSHPlus/open.py $porta" >>/etc/autostart
+                    } || {
+                        sed -i '/open.py/d' /etc/autostart
+                        echo -e "netstat -tlpn | grep -w $porta > /dev/null || screen -dmS openpy python /etc/SSHPlus/open.py $porta" >>/etc/autostart
+                    }
+                }
+                echo ""
+                echo -e "\033[1;32mSTARTING THE SOCKS OPENVPN\033[1;33m"
+                echo ""
+                fun_bar 'fun_inisocksop'
+                echo ""
+                echo -e "\033[1;32mSOCKS OPENVPN SUCCESSFULLY ACTIVATED\033[1;33m"
+                sleep 3
+                fun_socks
+            fi
+        elif [[ "$resposta" = '3' ]]; then
+            if ps x | grep proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+                sockspt=$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)
+                clear
+                echo -e "\E[44;1;37m            PROXY SOCKS             \E[0m"
+                echo ""
+                echo -e "\033[1;33mPORTS IN USE: \033[1;32m$sockspt"
+                echo ""
+                echo -ne "\033[1;32mWHICH PORT YOU WANT TO USE \033[1;33m?\033[1;37m: "
+                read porta
+                [[ -z "$porta" ]] && {
+                    echo ""
+                    echo -e "\033[1;31mPort invalid!"
+                    sleep 2
+                    clear
+                    fun_conexao
+                }
+                verif_ptrs $porta
+                echo ""
+                echo -e "\033[1;32mSTARTING PROXY SOCKS AT THE PORT \033[1;31m$porta\033[1;33m"
+                echo ""
+                abrirptsks() {
+                    sleep 1
+                    screen -dmS proxy python /etc/SSHPlus/proxy.py $porta
+                    sleep 1
+                }
+                fun_bar 'abreptic'
+                echo ""
+                echo -e "\033[1;32mPROXY SOCKS ENABLED SUCCESSFULLY \033[1;33m"
+                sleep 2
+                fun_socks
+            else
+                clear
+                echo -e "\033[1;31mFUNCTION UNAVAILABLE\n\n\033[1;33mACTIVATE SOCKS FIRST !\033[1;33m"
+                sleep 2
+                fun_socks
+            fi
+        elif [[ "$resposta" = '4' ]]; then
+            if ps x | grep -w proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+                clear
+                msgsocks=$(cat /etc/SSHPlus/proxy.py | grep -E "MSG =" | awk -F = '{print $2}' | cut -d "'" -f 2)
+                echo -e "\E[44;1;37m             PROXY SOCKS              \E[0m"
+                echo ""
+                echo -e "\033[1;33mSTATUS: \033[1;32m$msgsocks"
+                echo""
+                echo -ne "\033[1;32mINFORM YOUR STATUS\033[1;31m:\033[1;37m "
+                read msgg
+                [[ -z "$msgg" ]] && {
+                    echo -e "\n\033[1;31mInvalid status!"
+                    sleep 2
+                    fun_conexao
+                }
+                [[ ${msgg} != ?(+|-)+([a-zA-Z0-9-. ]) ]] && {
+                    echo -e "\n\033[1;31m[\033[1;33m!\033[1;31m]\033[1;33mAVOID SPECIAL CHARACTERS\033[0m"
+                    sleep 2
+                    fun_socks
+                }
+                echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m BLUE"
+                echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m GREEN"
+                echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m RED"
+                echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m YELLOW"
+                echo -e "\033[1;31m[\033[1;36m05\033[1;31m]\033[1;33m PINK"
+                echo -e "\033[1;31m[\033[1;36m06\033[1;31m]\033[1;33m cyano"
+                echo -e "\033[1;31m[\033[1;36m07\033[1;31m]\033[1;33m ORANGE"
+                echo -e "\033[1;31m[\033[1;36m08\033[1;31m]\033[1;33m PURPLE"
+                echo -e "\033[1;31m[\033[1;36m09\033[1;31m]\033[1;33m BLACK"
+                echo -e "\033[1;31m[\033[1;36m10\033[1;31m]\033[1;33m WITHOUT COLOR"
+                echo ""
+                echo -ne "\033[1;32mWHICH THE COLOR\033[1;31m ?\033[1;37m : "
+                read sts_cor
+                if [[ "$sts_cor" = "1" ]] || [[ "$sts_cor" = "01" ]]; then
+                    cor_sts='blue'
+                elif [[ "$sts_cor" = "2" ]] || [[ "$sts_cor" = "02" ]]; then
+                    cor_sts='green'
+                elif [[ "$sts_cor" = "3" ]] || [[ "$sts_cor" = "03" ]]; then
+                    cor_sts='red'
+                elif [[ "$sts_cor" = "4" ]] || [[ "$sts_cor" = "04" ]]; then
+                    cor_sts='yellow'
+                elif [[ "$sts_cor" = "5" ]] || [[ "$sts_cor" = "05" ]]; then
+                    cor_sts='#F535AA'
+                elif [[ "$sts_cor" = "6" ]] || [[ "$sts_cor" = "06" ]]; then
+                    cor_sts='cyan'
+                elif [[ "$sts_cor" = "7" ]] || [[ "$sts_cor" = "07" ]]; then
+                    cor_sts='#FF7F00'
+                elif [[ "$sts_cor" = "8" ]] || [[ "$sts_cor" = "08" ]]; then
+                    cor_sts='#9932CD'
+                elif [[ "$sts_cor" = "9" ]] || [[ "$sts_cor" = "09" ]]; then
+                    cor_sts='black'
+                elif [[ "$sts_cor" = "10" ]]; then
+                    cor_sts='null'
+                else
+                    echo -e "\n\033[1;33mINVALID OPTION !"
+                    cor_sts='null'
+                fi
+                fun_msgsocks() {
+                    msgsocks2=$(cat /etc/SSHPlus/proxy.py | grep "MSG =" | awk -F = '{print $2}')
+                    sed -i "s/$msgsocks2/ '$msgg'/g" /etc/SSHPlus/proxy.py
+                    sleep 1
+                    cor_old=$(grep 'color=' /etc/SSHPlus/proxy.py | cut -d '"' -f2)
+                    sed -i "s/\b$cor_old\b/$cor_sts/g" /etc/SSHPlus/proxy.py
 
-fun_openssh () {
-	clear
-	echo -e "\E[44;1;37m            OPENSSH             \E[0m\n"
-	echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mADD PORT\033[1;31m
-[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mREMOVER PORT\033[1;31m
-[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mRETURN\033[0m"
-	echo ""
-	echo -ne "\033[1;32mWHAT DO YOU WANT TO DO \033[1;33m?\033[1;37m "; read resp
-	if [[ "$resp" = '1' ]]; then
-		clear
-		echo -e "\E[44;1;37m         ADD PORT TO SSH         \E[0m\n"
-		echo -ne "\033[1;32mWHICH PORT YOU WANT TO ADD \033[1;33m?\033[1;37m "; read pt
-		if [[ -z "$pt" ]]; then
-			echo -e "\n\033[1;31mPort invalid!"
-			sleep 3
-			fun_conexao
+                }
+                echo ""
+                echo -e "\033[1;32maltering STATE!"
+                echo ""
+                fun_bar 'fun_msgsocks'
+                restartsocks() {
+                    if ps x | grep proxy.py | grep -v grep 1>/dev/null 2>/dev/null; then
+                        echo -e "$(netstat -nplt | grep 'python' | awk {'print $4'} | cut -d: -f2 | xargs)" >/tmp/Pt_sks
+                        for pidproxy in $(screen -ls | grep ".proxy" | awk {'print $1'}); do
+                            screen -r -S "$pidproxy" -X quit
+                        done
+                        screen -wipe >/dev/null
+                        _Ptsks="$(cat /tmp/Pt_sks)"
+                        sleep 1
+                        screen -dmS proxy python /etc/SSHPlus/proxy.py $_Ptsks
+                        rm /tmp/Pt_sks
+                    fi
+                }
+                echo ""
+                echo -e "\033[1;32mRESTARTING PROXY SOCKS!"
+                echo ""
+                fun_bar 'restartsocks'
+                echo ""
+                echo -e "\033[1;32mSUCCESSFULLY CHANGED STATUS!"
+                sleep 2
+                fun_socks
+            else
+                clear
+                echo -e "\033[1;31mFUNCTION UNAVAILABLE\n\n\033[1;33mACTIVATE SOCKS SSH FIRST !\033[1;33m"
+                sleep 2
+                fun_socks
+            fi
+        elif [[ "$resposta" = '0' ]]; then
+            echo ""
+            echo -e "\033[1;31mReturning...\033[0m"
+            sleep 1
+            fun_conexao
+        else
+            echo ""
+            echo -e "\033[1;31mInvalid option !\033[0m"
+            sleep 1
+            fun_socks
 		fi
-		verif_ptrs $pt
-		echo -e "\n\033[1;32mADDING PORT TO SSH\033[0m"
-		echo ""
-		fun_addpssh () {
-			echo "Port $pt" >> /etc/ssh/sshd_config
-			service ssh restart
-		}
-		fun_bar 'fun_addpssh'
-		echo -e "\n\033[1;32mSUCCESSFULLY ADDED PORT\033[0m"
-		sleep 3
-		fun_conexao
-	elif [[ "$resp" = '2' ]]; then
-		clear
-		echo -e "\E[41;1;37m         REMOVE PORT SSH         \E[0m"
-		echo -e "\n\033[1;33m[\033[1;31m!\033[1;33m] \033[1;32mSTANDARD PORT \033[1;37m22 \033[1;33mCAUTION !\033[0m"
-		echo -e "\n\033[1;33mPORT IN USE: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config|cut -d' ' -f2 |grep -v 'no' |xargs)\n"
-		echo -ne "\033[1;32mWHICH PORT YOU WISH TO REMOVE \033[1;33m?\033[1;37m "; read pt
-		if [[ -z "$pt" ]]; then
-			echo -e "\n\033[1;31mPorT invalid!"
-			sleep 3
-			fun_conexao
-		fi
-		[[ $(grep -wc "$pt" '/etc/ssh/sshd_config') != '0' ]] && {
-			echo -e "\n\033[1;32mREMOVED PORT SSH\033[0m"
-			echo ""
-			fun_delpssh () {
-				sed -i "/Port $pt/d" /etc/ssh/sshd_config
-				service ssh restart
-			}
-			fun_bar 'fun_delpssh'
-			echo -e "\n\033[1;32mSUCCESSFULLY REMOVED PORT\033[0m"
-			sleep 3
-			fun_conexao
-		} || {
-			echo -e "\n\033[1;31mPort invalid!"
-			sleep 3
-			fun_conexao
-		}
-	elif [[ "$resp" = '3' ]]; then
-		echo -e "\n\033[1;31mRetURNING.."
-		sleep 3
-		fun_conexao
-	else
-		echo -e "\n\033[1;31mOpcao invalid!"
-		sleep 3
-		fun_conexao
-	fi
+
+    }{
 }
 
 fun_sslh () {
