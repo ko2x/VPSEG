@@ -228,7 +228,9 @@ case "$x" in
    blockt
    ;;
    25)
-   botssh
+   echo -e "\033[1;33m]\033[1;37m -\033[1;32m sorry this feature isn't available yet !\033[1;37m" | lolcat -a
+   echo -ne "\n\033[1;31mENTER \033[1;33mTO RETURN \033[1;32mMENU!\033[0m" | lolcat -a; read
+   menu2
    ;;
    26)
    clear
