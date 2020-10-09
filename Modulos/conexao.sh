@@ -1646,7 +1646,7 @@ exit 1' >$RCLOCAL
 		while true $x != "ok"; do
 			[[ ! -e '/home/sshplus' ]] && echo -e "hey"
 			clear
-			echo -e "\E[44;1;37m                CONNECTION MODE                 \E[0m\n"
+			echo -e "\E[44;1;37m                CONNECTION MODE                 \E[0m\n" | lolcat -a
 			echo -e "\033[1;32mSERVICE: \033[1;33mopenssh \033[1;32mPORT: \033[1;37m$(grep 'Port' /etc/ssh/sshd_config | cut -d' ' -f2 | grep -v 'no' | xargs)" && sts6="\033[1;32m◉ "
 
 			[[ "$(netstat -tlpn | grep 'sslh' | wc -l)" != '0' ]] && {
