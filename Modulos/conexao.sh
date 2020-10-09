@@ -105,6 +105,7 @@
 			done
 			echo -e "\n\033[1;32mINSTALLING SQUID PROXY\033[0m"
 			echo ""
+			fun_bar 'apt install squid'
 			fun_bar 'apt-get update -y' 'instsqd'
 			if [[ -d "/etc/squid/" ]]; then
 				var_sqd="/etc/squid/squid.conf"
@@ -262,7 +263,7 @@
 			echo -e "\n\033[1;33mPORTAS\033[1;37m: \033[1;32m$sqdp"
 			VarSqdOn="remove Squid Proxy"
 		} || {
-			VarSqdOn="instalarSquidProxy"
+			VarSqdOn="instalar Squid  Proxy"
 		}
 		echo -e "\n\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33m$VarSqdOn \033[1;31m
 [\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mADD PORT \033[1;31m
