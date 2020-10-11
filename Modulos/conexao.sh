@@ -82,6 +82,7 @@
 			clear
 			echo -e "\E[44;1;37m              SQUID INSTALLER                \E[0m"
 			echo ""
+			apt install squid
 			IP=$(wget -qO- ipv4.icanhazip.com)
 			echo -ne "\033[1;32mTO CONTINUE CONFIRM YOUR IP: \033[1;37m"
 			read -e -i $IP ipdovps
