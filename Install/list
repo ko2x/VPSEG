@@ -91,7 +91,8 @@ wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/proxy.py -O /et
 chmod +x /etc/SSHPlus/proxy.py
 wget https://raw.githubusercontent.com/teddysunbackup/shadowsocks_install/master/shadowsocks-all.sh -O /bin/shadowsocks > /dev/null 2>&1
 chmod +x /bin/shadowsocks
-
+wget https://raw.githubusercontent.com/ko2x/VPSEG/master/Modulos/instsqd -O /etc/SSHPlus/instsqd> /dev/null 2>&1
+chmod +x /etc/SSHPlus/instsqd
 
 [[ ! -d /etc/bot ]] && mkdir /etc/bot
 [[ ! -d /etc/bot/info-users ]] && mkdir /etc/bot/info-users
@@ -100,7 +101,7 @@ chmod +x /bin/shadowsocks
 [[ ! -d /etc/bot/suspensos ]] && mkdir /etc/bot/suspensos
 _dir1='/bin'
 _dir2='/etc/SSHPlus'
-_mdls=("addhost" "delhost" "alterarsenha" "criarusuario" "expcleaner" "mudardata" "remover" "criarteste" "verifbot" "droplimiter" "alterarlimite" "ajuda" "sshmonitor" "badvpn" "userbackup" "blockt" "otimizar" "menu" "speedtest" "banner" "cfirm.py" "senharoot" "reiniciarservicos" "reiniciarsistema" "attscript" "conexao" "delscript" "detalhes" "botssh" "infousers" "verifatt" "limiter" "uexpired" "cabecalho" "bot" "proxy.py" "shadowsocks")
+_mdls=("addhost" "delhost" "alterarsenha" "instsqd" "criarusuario" "expcleaner" "mudardata" "remover" "criarteste" "verifbot" "droplimiter" "alterarlimite" "ajuda" "sshmonitor" "badvpn" "userbackup" "blockt" "otimizar" "menu" "speedtest" "banner" "cfirm.py" "senharoot" "reiniciarservicos" "reiniciarsistema" "attscript" "conexao" "delscript" "detalhes" "botssh" "infousers" "verifatt" "limiter" "uexpired" "cabecalho" "bot" "proxy.py" "shadowsocks")
 _arq_host="/etc/hosts"
 _host[0]="d1n212ccp6ldpw.cloudfront.net"
 _host[1]="dns.whatsapp.net"
