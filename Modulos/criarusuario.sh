@@ -1,4 +1,5 @@
 #!/bin/bash
+#echo -e "$IP:8089@$username:$password"
 IP=$(cat /etc/IP)
 # Gerar client.ovpn
 newclient () {
